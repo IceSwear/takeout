@@ -1,0 +1,129 @@
+server:
+  port: 8888
+  shutdown: graceful
+
+defaultEmailSMTPHost: smtp.263.net
+defaultSmtpPort: 465
+
+linux:
+  temp:
+    path: /tmp
+windows:
+  temp:
+    path: D:\TEMP
+deploy:
+  env: local
+sql:
+  log:
+    level: debug
+log:
+  level: info
+  path: /tmp
+#like below
+#logging:
+#  level:
+#    root: debug
+
+#http://t.csdn.cn/cr8oV
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: isDeleted   #logic delete field
+      logic-delete-value: Y    #deleted
+      logic-not-delete-value: N   #not deleted
+    #      table-prefix: tb_    #prefix
+    banner: false
+  configuration:
+    map-underscore-to-camel-case: true  #open camel mode
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #mybatis-plus print full sql
+  type-aliases-package: com.kiseki.model.entities
+  mapper-locations: classpath:/mapper/**/*.xml   #mapper.xml mapper path
+
+spring:
+  datasource:
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    acquireIncrement: 2
+    autoCommitOnClose: true
+    checkoutTimeout: 5000
+    driverClass: com.mysql.cj.jdbc.Driver
+    initialPoolSize: 10
+    maxIdleTime: 1200
+    maxPoolSize: 50
+    minPoolSize: 10
+    password: root
+    jdbcUrl: jdbc:mysql://localhost/project?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    user: root
+  application:
+    name: Takeout_demo
+  mail:
+    host: smtp.163.com
+    username:
+    password:
+    # ssl
+    port: 465
+    default-encoding: utf-8
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+            socketFactory:
+              port: 465
+              class: javax.net.ssl.SSLSocketFactory
+  banner:
+    image:
+      location: files/logo.jpg
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  cloud:
+    alicloud:
+      access-key:
+      secret-key:
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+        bucketname:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    allow-circular-references: true
+    banner-mode: console   #set "off" to close
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  #redis config
+  redis:
+    host: 127.0.0.1
+    password: root
+    port: 6379
+    jedis:
+      pool:
+        enabled: true
+        max-active: 8       #max connection
+        max-wait: 1000ms  #max block time
+        max-idle: 8  #max free connections
+        min-idle: 0 #min free connections
+    database: 0
+  cache:
+    type: redis
+    redis:
+      time-to-live: 1800000
+
+
+#swagger prefix
+#https://blog.csdn.net/weixin_45707639/article/details/125365206
+swagger:
+  prefix: /api_test

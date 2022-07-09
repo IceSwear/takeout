@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kk.model.persistence.OrderDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.kk.model.entities.OrderDetail">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="image" property="image" />
+        <result column="order_id" property="orderId" />
+        <result column="dish_id" property="dishId" />
+        <result column="setmeal_id" property="setmealId" />
+        <result column="dish_flavor" property="dishFlavor" />
+        <result column="number" property="number" />
+        <result column="amount" property="amount" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, image, order_id, dish_id, setmeal_id, dish_flavor, number, amount
+    </sql>
+
+</mapper>

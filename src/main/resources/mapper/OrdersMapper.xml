@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kk.model.persistence.OrdersMapper">
+
+    <resultMap id="BaseResultMap" type="com.kk.model.entities.Orders">
+        <id column="id" property="id" />
+        <result column="number" property="number" />
+        <result column="status" property="status" />
+        <result column="user_id" property="userId" />
+        <result column="address_book_id" property="addressBookId" />
+        <result column="order_time" property="orderTime" />
+        <result column="checkout_time" property="checkoutTime" />
+        <result column="pay_method" property="payMethod" />
+        <result column="amount" property="amount" />
+        <result column="remark" property="remark" />
+        <result column="phone" property="phone" />
+        <result column="address" property="address" />
+        <result column="user_name" property="userName" />
+        <result column="consignee" property="consignee" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, number, status, user_id, address_book_id, order_time, checkout_time, pay_method, amount, remark, phone, address, user_name, consignee
+    </sql>
+
+</mapper>

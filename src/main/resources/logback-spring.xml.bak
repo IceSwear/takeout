@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+    <springProperty scope="context" name="logPath" source="log.path"/>
+    <springProperty scope="context" name="logLevel" source="log.level"/>
+    <springProperty scope="context" name="sqlLogLevel" source="sql.log.level"/>
+
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{trackingId}] %-5level [%thread] %logger{36} %line - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--输出路径-->
+            <fileNamePattern>${logPath}/server.%d.info.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{tracking-id}] %-5level [%thread] %logger{36} %line - %msg%n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--输出路径-->
+            <fileNamePattern>${logPath}/server.%d.error.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{tracking-id}] %-5level [%thread] %logger{36} %line - %msg%n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 用于打印 Spring 在启动的时候初始化各个 Bean 的信息 -->
+    <logger name="org.springframework.web" level="${logLevel}"/>
+    <logger name="org.springframework.context.annotation.AnnotationConfigApplicationContext" level="OFF"/>
+
+    <!--如果想要记录更详细的 SQL 日志，只需要把下面的日志级别改成 TRACE 就可以了-->
+    <!--即将 mapper 接口打入 logger 就行。-->
+    <logger name="com.kk.model.persistence" level="${sqlLogLevel}"></logger>
+
+    <root level="${logLevel}">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="fileLog"/>
+        <appender-ref ref="fileErrorLog"/>
+    </root>
+</Configuration>

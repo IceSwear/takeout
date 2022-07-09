@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kk.model.persistence.DishMapper">
+
+    <resultMap id="BaseResultMap" type="com.kk.model.entities.Dish">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="category_id" property="categoryId" />
+        <result column="price" property="price" />
+        <result column="code" property="code" />
+        <result column="image" property="image" />
+        <result column="description" property="description" />
+        <result column="status" property="status" />
+        <result column="sort" property="sort" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user" property="updateUser" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, name, category_id, price, code, image, description, status, sort, create_time, update_time, create_user, update_user, is_deleted
+    </sql>
+
+</mapper>
